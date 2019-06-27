@@ -25,8 +25,7 @@ public class Client extends Person {
         this.frequentsDirections = frequentsDirections;
     }
 
-    public void addNewFrequentDirection(Direction pDirection)
-    {
+    public void addNewFrequentDirection(Direction pDirection) {
         frequentsDirections.add(pDirection);
     }
 }

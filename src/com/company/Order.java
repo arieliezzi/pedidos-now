@@ -81,8 +81,7 @@ public class Order {
         this.date = date;
     }
 
-    private int getId()
-    {
+    private int getId() {
         countId++;
         return countId;
     }

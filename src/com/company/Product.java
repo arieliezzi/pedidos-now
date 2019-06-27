@@ -17,8 +17,7 @@ public class Product {
         this.setPrice(price);
     }
 
-    private int setId()
-    {
+    private int setId() {
         countId++;
         return countId;
     }
@@ -62,6 +61,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return  id +"- " + name + " - " +" " + description  +" stock =" + stock +" $" + price ;
+        return id + "- " + name + " - " + " " + description + " stock =" + stock + " $" + price;
     }
 }

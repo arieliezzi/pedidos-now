@@ -10,8 +10,7 @@ public class Vector2 {
         this.y = y;
     }
 
-    public Vector2()
-    {
+    public Vector2() {
         setX(0);
         setY(0);
     }
@@ -33,8 +32,9 @@ public class Vector2 {
         this.y = y;
     }
 
-    public float Distance(Vector2 pValue)
-    {
-        return (float)Math.sqrt((Math.pow(pValue.x - this.x,2)+Math.pow(pValue.y -this.y,2)));
+    public float Distance(Vector2 pValue) {
+        return (float) Math.sqrt((Math.pow(pValue.x - this.x, 2) + Math.pow(pValue.y - this.y, 2)));
     }
+
+
 }
