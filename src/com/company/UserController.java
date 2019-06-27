@@ -55,7 +55,7 @@ public class UserController {
         System.out.println("Departamento (0 si no posee):");
 
 
-        char depto = scan.nextLine().toCharArray()[0];
+        String depto = scan.nextLine();
 
         Direction direccion = new Direction(new Vector2(1, altura), calle, altura, piso, depto);
 
@@ -98,7 +98,7 @@ public class UserController {
         System.out.println("Piso (0 si no posee):");
         int piso = scan.nextInt();
         System.out.println("Departamento (0 si no posee):");
-        char depto = scan.nextLine().toCharArray()[0];
+        String depto = scan.nextLine();
 
         Direction direccion = new Direction(new Vector2(1, altura), calle, altura, piso, depto);
 
@@ -144,7 +144,7 @@ public class UserController {
         System.out.println("Piso (0 si no posee):");
         int piso = scan.nextInt();
         System.out.println("Departamento (0 si no posee):");
-        char depto = scan.nextLine().toCharArray()[0];
+        String depto = scan.nextLine();
 
         Direction direccion = new Direction(new Vector2(1, altura), calle, altura, piso, depto);
 

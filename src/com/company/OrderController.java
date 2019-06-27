@@ -87,7 +87,7 @@ public class OrderController {
         Vector2 vector = new Vector2(); //Creo el vector q solicita la orden de compra
         Date date = new Date(); //creo la fecha actual
         Dealer position = new Dealer(pCliente.getUserName(), pCliente.getPass(), pCliente.getEmail(), pCliente.getLastName(), pCliente.getName()
-                , pCliente.getDirection(), pCliente.getTelphone(), vector, true); //Creo el dealer
+                , pCliente.getDirection(), pCliente.getTel(), vector, true); //Creo el dealer
         Order newOrder = new Order(shopCart, 0, selectedMarket, position, pCliente, date); //Creo la orden con los datos recopilados anteriormente
         System.out.println("\n\nOrden registrada : \n" + newOrder.toString());
         System.out.println("\n\nConfirmar pedido : ");

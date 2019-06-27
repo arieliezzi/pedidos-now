@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class Product {
     static int countId = 0;
     private int id;
@@ -62,5 +64,46 @@ public class Product {
     @Override
     public String toString() {
         return id + "- " + name + " - " + " " + description + " stock =" + stock + " $" + price;
+    }
+
+
+    public void modifyProduct() throws Exception {
+        Scanner scan = new Scanner(System.in);
+
+
+        System.out.println("Edicion de producto : ");
+
+
+        System.out.println("Que campo va a modificar?");
+        System.out.println("1 - Nombre");
+        System.out.println("2 - Descripcion");
+        System.out.println("3 - Precio");
+        System.out.println("4 - Stock");
+        System.out.println("\n\n Ingrese seleccion : ");
+       int res = scan.nextInt();
+
+        switch (res) {
+            case 1:
+                System.out.println("Ingrese el nuevo nombre");
+                this.setName(scan.nextLine());
+                break;
+            case 2:
+                System.out.println("Ingrese la nueva descripcion");
+                this.setDescription(scan.nextLine());
+                break;
+            case 3:
+                System.out.println("Ingrese el nuevo precio");
+               this.setPrice(scan.nextFloat());
+                break;
+            case 4:
+                System.out.println("Ingrese el nuevo stock");
+                this.setStock(scan.nextInt());
+                break;
+            default:
+                System.out.println("Opcion incorrecta");
+                break;
+        }
+
+
     }
 }

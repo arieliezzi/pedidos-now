@@ -15,9 +15,9 @@ public class Main {
     }
 
     private static void init() {
-        Direction dir1 = new Direction(new Vector2(1, 1), "Alem", 123, 0, '0');
-        Direction dir2 = new Direction(new Vector2(15, 20), "Cordoba", 123, 0, '0');
-        Direction dir3 = new Direction(new Vector2(75, 80), "Jara", 321, 0, '0');
+        Direction dir1 = new Direction(new Vector2(1, 1), "Alem", 123, 0, "0");
+        Direction dir2 = new Direction(new Vector2(15, 20), "Cordoba", 123, 0, "0");
+        Direction dir3 = new Direction(new Vector2(75, 80), "Jara", 321, 0, "0");
 
         Client client1 = new Client("client1", "asd123", "client1@hotmail.com", "Benitez", "Martin", dir1, 123234);
         userController.addNewUser(client1);
@@ -26,9 +26,9 @@ public class Main {
         Client client3 = new Client("client3", "asd123", "client3@hotmail.com", "Campaña", "Martin", dir3, 863234);
         userController.addNewUser(client3);
 
-        Direction dir4 = new Direction(new Vector2(1, 6), "Alem", 123, 0, '0');
-        Direction dir5 = new Direction(new Vector2(25, 10), "Cordoba", 123, 0, '0');
-        Direction dir6 = new Direction(new Vector2(39, 63), "Jara", 321, 0, '0');
+        Direction dir4 = new Direction(new Vector2(1, 6), "Alem", 123, 0, "0");
+        Direction dir5 = new Direction(new Vector2(25, 10), "Cordoba", 123, 0, "0");
+        Direction dir6 = new Direction(new Vector2(39, 63), "Jara", 321, 0, "0");
 
         Market market1 = new Market("market1", "market1", "macdonalds@yahoo.com", dir4, "McDonalds");
         Market market2 = new Market("market2", "market2", "baum@yahoo.com", dir5, "Baum");

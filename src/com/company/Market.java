@@ -77,54 +77,7 @@ public class Market extends User {
         }
     }
 
-    public void modifyProduct() throws Exception {
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("Elige el producto a modificar: ");
-        showProducts();
-
-        System.out.println("");
-        System.out.println("Ingrese el ID del producto a modificar");
-        int res = scan.nextInt();
-
-        Product product = findProduct(res);
-
-        System.out.println("Que campo va a modificar?");
-        System.out.println("1 - Nombre");
-        System.out.println("2 - Descripcion");
-        System.out.println("3 - Precio");
-        System.out.println("4 - Stock");
-
-        res = scan.nextInt();
-
-        switch (res) {
-            case 1:
-                System.out.println("Ingrese el nuevo nombre");
-                product.setName(scan.nextLine());
-                break;
-            case 2:
-                System.out.println("Ingrese la nueva descripcion");
-                product.setDescription(scan.nextLine());
-                break;
-            case 3:
-                System.out.println("Ingrese el nuevo precio");
-                product.setPrice(scan.nextFloat());
-                break;
-            case 4:
-                System.out.println("Ingrese el nuevo stock");
-                product.setStock(scan.nextInt());
-                break;
-            default:
-                System.out.println("Opcion incorrecta");
-                modifyProduct();
-                break;
-        }
-
-
-    }
-
-
-    private Product findProduct(int index) throws Exception {
+    public Product findProduct(int index) throws Exception {
         Product product;
         try {
             product = getProducts().get(index);
@@ -134,6 +87,9 @@ public class Market extends User {
 
         return product;
     }
+
+
+
 
 
 }

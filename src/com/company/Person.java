@@ -1,31 +1,32 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class Person extends User {
 
     private String lastName;
     private String name;
     private Direction direction;
-    private int telphone;
+    private int tel; //cambie el nombre porq tiraba warning
     private ArrayList<Order> orders;
 
 
-    public Person(String userName, String pass, String email, String lastName, String name, Direction direction, int telphone, ArrayList<Order> orders) {
+    public Person(String userName, String pass, String email, String lastName, String name, Direction direction, int tel, ArrayList<Order> orders) {
         super(userName, pass, email);
         this.setLastName(lastName);
         this.setName(name);
         this.setDirection(direction);
-        this.setTelphone(telphone);
+        this.setTel(tel);
         this.setOrders(orders);
     }
 
-    public Person(String userName, String pass, String email, String lastName, String name, Direction direction, int telphone) {
+    public Person(String userName, String pass, String email, String lastName, String name, Direction direction, int tel) {
         super(userName, pass, email);
         this.setLastName(lastName);
         this.setName(name);
         this.setDirection(direction);
-        this.setTelphone(telphone);
+        this.setTel(tel);
 
         orders = new ArrayList<Order>();
     }
@@ -55,12 +56,12 @@ public abstract class Person extends User {
         this.direction = direction;
     }
 
-    public int getTelphone() {
-        return telphone;
+    public int getTel() {
+        return tel;
     }
 
-    public void setTelphone(int telphone) {
-        this.telphone = telphone;
+    public void setTel(int tel) {
+        this.tel = tel;
     }
 
     public ArrayList<Order> getOrders() {
@@ -69,5 +70,19 @@ public abstract class Person extends User {
 
     public void setOrders(ArrayList<Order> orders) {
         this.orders = orders;
+    }
+
+    public void showOrdersName(){ //creo para listar a la hora de editar o buscar
+        for (int i=0; i<this.getOrders().size(); i++){
+            System.out.println("\n\n"+i+" "+this.getOrders().get(i).getMarket().getName()); //Solo muestro el nombre para seleccionar
+        }
+    }
+    public Order getSpecificOrder(){ //Permite seleccionar el market y retorna la orden
+        System.out.println("\nChoose a Market : ");
+        this.showOrdersName();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese seleccion : ");
+        int resp = scanner.nextInt();
+        return this.getOrders().get(resp);
     }
 }
