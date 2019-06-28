@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class UserController {
 
 
-
     private ArrayList<User> usersList;
 
     public UserController() {
@@ -14,13 +13,11 @@ public class UserController {
     }
 
 
-    public void addNewUser(User pValue)
-    {
+    public void addNewUser(User pValue) {
         this.usersList.add(pValue);
     }
 
-    public void createClient()
-    {
+    public void createClient() {
         Scanner scan = new Scanner(System.in);
 
         String user;
@@ -56,21 +53,22 @@ public class UserController {
         System.out.println("Piso (0 si no posee):");
         int piso = scan.nextInt();
         System.out.println("Departamento (0 si no posee):");
-        char depto = scan.nextLine().toCharArray()[0];
 
-        Direction direccion = new Direction(new Vector2(1,altura),calle,altura,piso,depto);
+
+        String depto = scan.nextLine();
+
+        Direction direccion = new Direction(new Vector2(1, altura), calle, altura, piso, depto);
 
         System.out.println("Telefono:");
         int telefono = scan.nextInt();
 
-        Client cliente = new Client(user,pass,mail,apellido,nombre,direccion,telefono);
+        Client cliente = new Client(user, pass, mail, apellido, nombre, direccion, telefono);
 
         addNewUser(cliente);
     }
 
 
-    public void createMarket()
-    {
+    public void createMarket() {
         Scanner scan = new Scanner(System.in);
 
         String user;
@@ -100,19 +98,18 @@ public class UserController {
         System.out.println("Piso (0 si no posee):");
         int piso = scan.nextInt();
         System.out.println("Departamento (0 si no posee):");
-        char depto = scan.nextLine().toCharArray()[0];
+        String depto = scan.nextLine();
 
-        Direction direccion = new Direction(new Vector2(1,altura),calle,altura,piso,depto);
+        Direction direccion = new Direction(new Vector2(1, altura), calle, altura, piso, depto);
 
 
-        Market market = new Market(user,pass,mail,direccion,nombre);
+        Market market = new Market(user, pass, mail, direccion, nombre);
 
         addNewUser(market);
     }
 
 
-    public void createDealer()
-    {
+    public void createDealer() {
         Scanner scan = new Scanner(System.in);
 
         String user;
@@ -147,26 +144,24 @@ public class UserController {
         System.out.println("Piso (0 si no posee):");
         int piso = scan.nextInt();
         System.out.println("Departamento (0 si no posee):");
-        char depto = scan.nextLine().toCharArray()[0];
+        String depto = scan.nextLine();
 
-        Direction direccion = new Direction(new Vector2(1,altura),calle,altura,piso,depto);
+        Direction direccion = new Direction(new Vector2(1, altura), calle, altura, piso, depto);
 
         System.out.println("Telefono:");
         int telefono = scan.nextInt();
 
-        Dealer dealer = new Dealer(user,pass,mail,nombre,apellido,direccion,telefono, new Vector2(2,altura),true);
+        Dealer dealer = new Dealer(user, pass, mail, nombre, apellido, direccion, telefono, new Vector2(2, altura), true);
 
         addNewUser(dealer);
     }
 
-    public void deleteUser(User pUser)
-    {
-        if(usersList.contains(pUser))
+    public void deleteUser(User pUser) {
+        if (usersList.contains(pUser))
             usersList.remove(pUser);
     }
 
-    public User loguin(String pUserName, String pPass)
-    {
+    public User loguin(String pUserName, String pPass) {
         //ACA HAY QUE USAR TRY CATCH PARA LOS TIPOS DE ERRORES (SI ENCUENTRA USER
         //SI NO COINCIDE EL PASS
 
@@ -175,20 +170,15 @@ public class UserController {
         boolean exist = false;
 
         for (int i = 0; i < usersList.size(); i++) {
-            if(usersList.get(i).getUserName().equals(pUserName)) {
+            if (usersList.get(i).getUserName().equals(pUserName)) {
                 if (usersList.get(i).getPass().equals(pPass)) {
-                 exist = true;
-                 user = usersList.get(i);
+                    exist = true;
+                    user = usersList.get(i);
                 }
             }
         }
-
-
-
         return user;
     }
-
-
 
 
     public ArrayList<User> getUsersList() {

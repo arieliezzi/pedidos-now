@@ -39,11 +39,12 @@ public abstract class User {
     }
 
 
-
-    private int getId()
-    {
+    private int getId() {
         countId++;
         return countId;
     }
 
+    public String toString() {
+        return "\nUser name : " + this.getUserName() + "\nE-mail : " + this.getEmail() + "\nId : " + this.getId();
+    }
 }

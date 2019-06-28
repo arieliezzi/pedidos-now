@@ -1,4 +1,5 @@
 package com.company;
+
 import java.util.Scanner;
 
 public class Main {
@@ -13,34 +14,32 @@ public class Main {
         init();
     }
 
-    private static void init()
-    {
-        Direction dir1 = new Direction(new Vector2(1,1),"Alem",123,0,'0');
-        Direction dir2 = new Direction(new Vector2(15,20),"Cordoba",123,0,'0');
-        Direction dir3 = new Direction(new Vector2(75,80),"Jara",321,0,'0');
+    private static void init() {
+        Direction dir1 = new Direction(new Vector2(1, 1), "Alem", 123, 0, "0");
+        Direction dir2 = new Direction(new Vector2(15, 20), "Cordoba", 123, 0, "0");
+        Direction dir3 = new Direction(new Vector2(75, 80), "Jara", 321, 0, "0");
 
-        Client client1 = new Client("client1","asd123","client1@hotmail.com","Benitez","Martin",dir1,123234);
+        Client client1 = new Client("client1", "asd123", "client1@hotmail.com", "Benitez", "Martin", dir1, 123234);
         userController.addNewUser(client1);
-        Client client2 = new Client("client2","asd123","client2@hotmail.com","Perez","Pablo",dir2,1553234);
+        Client client2 = new Client("client2", "asd123", "client2@hotmail.com", "Perez", "Pablo", dir2, 1553234);
         userController.addNewUser(client2);
-        Client client3 = new Client("client3","asd123","client3@hotmail.com","Campaña","Martin",dir3,863234);
+        Client client3 = new Client("client3", "asd123", "client3@hotmail.com", "Campaña", "Martin", dir3, 863234);
         userController.addNewUser(client3);
 
-        Direction dir4 = new Direction(new Vector2(1,6),"Alem",123,0,'0');
-        Direction dir5 = new Direction(new Vector2(25,10),"Cordoba",123,0,'0');
-        Direction dir6 = new Direction(new Vector2(39,63),"Jara",321,0,'0');
+        Direction dir4 = new Direction(new Vector2(1, 6), "Alem", 123, 0, "0");
+        Direction dir5 = new Direction(new Vector2(25, 10), "Cordoba", 123, 0, "0");
+        Direction dir6 = new Direction(new Vector2(39, 63), "Jara", 321, 0, "0");
 
-        Market market1 = new Market("market1","market1","macdonalds@yahoo.com",dir4,"McDonalds");
-        Market market2 = new Market("market2","market2","baum@yahoo.com",dir5,"Baum");
-        Market market3 = new Market("market3","market3","Cheverry@yahoo.com",dir6,"Cheverry");
+        Market market1 = new Market("market1", "market1", "macdonalds@yahoo.com", dir4, "McDonalds");
+        Market market2 = new Market("market2", "market2", "baum@yahoo.com", dir5, "Baum");
+        Market market3 = new Market("market3", "market3", "Cheverry@yahoo.com", dir6, "Cheverry");
 
         ShowOptions();
     }
 
-    private static void ShowOptions()
-    {
+    private static void ShowOptions() {
         clearScreen();
-        Scanner scan = new Scanner (System.in);
+        Scanner scan = new Scanner(System.in);
 
         System.out.println("Bienvenide!");
         System.out.println("Seleccione una opcion");
@@ -59,8 +58,7 @@ public class Main {
         System.out.flush();
     }
 
-    private static void optionSelection(int pValue)
-    {
+    private static void optionSelection(int pValue) {
         switch (pValue) {
             case 1:
                 loginUi();
@@ -96,13 +94,12 @@ public class Main {
 
         pass = scan.nextLine();
 
-        User u = userController.loguin(user,pass);
+        User u = userController.loguin(user, pass);
 
-        if(u == null) {
+        if (u == null) {
             System.out.println("Nombre de usuario o contraseña incorrecto");
             loginUi();
-        }
-        else {
+        } else {
             if (u instanceof Client)
                 showMenuClient();
             else if (u instanceof Dealer)
@@ -113,8 +110,7 @@ public class Main {
     }
 
 
-    static void showMenuClient()
-    {
+    static void showMenuClient() {
         System.out.println("");
         System.out.println("Ingrese una nueva opcion:");
         System.out.println("1 - Realizar nuevo pedido");
@@ -122,8 +118,7 @@ public class Main {
     }
 
 
-    private static void clientOptionSelection(int pValue)
-    {
+    private static void clientOptionSelection(int pValue) {
         switch (pValue) {
             case 1:
                 break;
@@ -135,13 +130,11 @@ public class Main {
         }
     }
 
-    static void showMenuDealer()
-    {
+    static void showMenuDealer() {
 
     }
 
-    static void showMenuMarket()
-    {
+    static void showMenuMarket() {
         System.out.println("");
         System.out.println("Ingrese una nueva opcion:");
         System.out.println("1 - Cargar nuevo producto");

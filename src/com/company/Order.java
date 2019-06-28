@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Order {
     static int countId = 0;
@@ -12,6 +13,8 @@ public class Order {
     private Dealer dealer;
     private Client client;
     private Date date;
+
+
 
     public Order(ArrayList<Product> products, float desc, Market market, Dealer dealer, Client client, Date date) {
         this.id = getId();
@@ -81,9 +84,29 @@ public class Order {
         this.date = date;
     }
 
-    private int getId()
-    {
+    private int getId() {
         countId++;
         return countId;
     }
+
+
+    public void showOrderProducts(){ //Creo esta funcion para poder listar los productos a la hora de editar
+        for (int i=0; i< this.getProducts().size(); i++){
+            System.out.println("\n"+i+this.getProducts().get(i).toString());
+        }
+    }
+    public void editOrder() throws Exception {
+        System.out.println("\n\nSeleccione el producto a modificar : ");
+        this.showOrderProducts(); //Listo los productos de esta orden
+        System.out.println("\n\nIngrese nro de producto a modificar: ");
+        Scanner scanner = new Scanner(System.in);
+        int productIndex = scanner.nextInt();//Almaceno el index del producto a modificar
+        Product toModify = this.getProducts().get(productIndex); //Capturo el producto
+        try {
+            toModify.modifyProduct();
+        } catch (Exception e) {
+            e.printStackTrace(); //Aca deberiamos crear otra excepecion
+        }
+    }
+
 }

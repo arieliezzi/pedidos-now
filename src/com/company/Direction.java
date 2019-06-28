@@ -1,14 +1,16 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class Direction {
 
     private Vector2 coords;
     private String street;
     private int number;
     private int floor;
-    private char dept;
+    private String dept; // cambio a string porq no encuentro como scanear el proximo char
 
-    public Direction(Vector2 coords, String street, int number, int floor, char dept) {
+    public Direction(Vector2 coords, String street, int number, int floor, String dept) {
         this.setCoords(coords);
         this.setStreet(street);
         this.setNumber(number);
@@ -48,11 +50,49 @@ public class Direction {
         this.floor = floor;
     }
 
-    public char getDept() {
+    public String getDept() {
         return dept;
     }
 
-    public void setDept(char dept) {
+    public void setDept(String dept) {
         this.dept = dept;
+    }
+
+    public void editDirection(){ //Creo modificacion de Direccion para poder modificar el cliente
+        System.out.println("\n\nSeleccione el campo a modificar");
+        System.out.println("\n1.Calle");
+        System.out.println("\n2.Nro Calle");
+        System.out.println("\n3.Nro de Piso");
+        System.out.println("\n4.Nro de Dpto");
+        System.out.println("\n5.Coordenadas");
+        System.out.println("\n\n Ingrese seleccion : ");
+        Scanner scan = new Scanner(System.in);
+        int select = scan.nextInt();
+
+    switch(select){
+        case 1:
+            System.out.println("\nIngrese la nueva calle : ");
+            this.setStreet(scan.nextLine());
+            break;
+        case 2:
+            System.out.println("\nIngrese Nro de calle: ");
+            this.setStreet(scan.nextLine());
+            break;
+        case 3:
+            System.out.println("\nIngrese Nro de piso : ");
+            this.setFloor(scan.nextInt());
+            break;
+        case 4:
+            System.out.println("\nIngrese Nro de Dpto");
+            this.setDept(scan.next());
+            break;
+        case 5:
+            System.out.println("\nEdicion de coordenadas : ");
+            System.out.println("\n\nIngrese X : ");
+            this.getCoords().setX(scan.nextInt());
+            System.out.println("\n\nIngrese Y : ");
+            this.getCoords().setY(scan.nextInt());
+            break;
+    }
     }
 }
