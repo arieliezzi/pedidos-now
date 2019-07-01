@@ -73,9 +73,15 @@ public abstract class Person extends User {
     }
 
     public void showOrdersName(){ //creo para listar a la hora de editar o buscar
-        for (int i=0; i<this.getOrders().size(); i++){
-            System.out.println("\n\n"+i+" "+this.getOrders().get(i).getMarket().getName()); //Solo muestro el nombre para seleccionar
-        }
+        if (this.getOrders()!=null){
+            for (int i=0; i<this.getOrders().size(); i++){
+                System.out.println("Order nro : "+i);
+                System.out.println("\n\n"+i+" "+this.getOrders().get(i).getMarket().getName()); //Solo muestro el nombre para seleccionar
+                System.out.println("Direccion a entregar : "+this.getOrders().get(i).getClient().getDirection().
+                        getStreet()+" "+this.getOrders().get(i).getClient().getDirection().getNumber());
+            }
+        } else System.out.println("\nNo hay ordenes para mostrar, intente mas tarde");
+
     }
     public Order getSpecificOrder(){ //Permite seleccionar el market y retorna la orden
         System.out.println("\nChoose a Market : ");

@@ -2,6 +2,7 @@ package com.company;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -29,7 +30,6 @@ public class Main {
         Direction dir1 = new Direction(new Vector2(1, 1), "Alem", 123, 0, "0");
         Direction dir2 = new Direction(new Vector2(15, 20), "Cordoba", 123, 0, "0");
         Direction dir3 = new Direction(new Vector2(75, 80), "Jara", 321, 0, "0");
-
         Client client1 = new Client("client1", "asd123", "client1@hotmail.com", "Benitez", "Martin", dir1, 123234);
         userController.addNewUser(client1);
         Client client2 = new Client("client2", "asd123", "client2@hotmail.com", "Perez", "Pablo", dir2, 1553234);
@@ -71,6 +71,8 @@ public class Main {
         userController.addNewUser((market3));
 
 
+
+
         Dealer delivery1 = new Dealer(orderController,"Martincho1992", "asd123", "de1@hotmail.com", "Benitez", "Martin", dir1
                 , 123234,new ArrayList<Order>(),new Vector2(),false);
         userController.addNewUser(delivery1);
@@ -78,12 +80,18 @@ public class Main {
                 , 123234,new ArrayList<Order>(),new Vector2(),false);
         userController.addNewUser(delivery2);
 
+        Order order1 = new Order(productosBawm,0,market2,delivery1,client1,new Date());
+        Order order2 = new Order(productosMac,0,market1,delivery2,client2,new Date());
+        orderController.addOrder(order1);
+        orderController.addOrder(order2);
+
+        orderController.showOrders();
     }
 
     private static int ShowOptions() {
         clearScreen();
         Scanner scan = new Scanner(System.in);
-        System.out.println("Bienvenide!");
+        System.out.println("\n\nBienvenide!");
         System.out.println("Seleccione una opcion");
         System.out.println("1 - Login");
         System.out.println("2 - Crear nuevo cliente");
@@ -159,40 +167,56 @@ public class Main {
     }
 
     static void showMenuDelivery(Dealer delivery) {
-        System.out.println("\nDelivery Menu : ");
-        delivery.setAvailable(true); //Habilito el delivery
-        System.out.println("Ingrese una nueva opcion:");
-        System.out.println("1 - Solicitar cliente");
-        System.out.println("2 - Entregar pedido");
-        System.out.println("\nIngrese seleccion : ");
-        Scanner scanner = new Scanner(System.in);
-        int select = scanner.nextInt();
-        deliveryOptionSelection(select,delivery);
+        boolean back= false;
+        while (back==false){
+            System.out.println("\nDelivery Menu : ");
+            delivery.setAvailable(true); //Habilito el delivery
+            System.out.println("Ingrese una nueva opcion:");
+            System.out.println("1 - Solicitar cliente");
+            System.out.println("2 - Entregar pedido");
+            System.out.println("3 - Ver pedidos pendientes");
+            System.out.println("9 - Back to login page");
+            System.out.println("\nIngrese seleccion : ");
+            Scanner scanner = new Scanner(System.in);
+            int select = scanner.nextInt();
+            if (select==9){back=true;}
+            deliveryOptionSelection(select,delivery);
+        }
+
     }
 
     private static void deliveryOptionSelection(int pValue, Dealer delivery) {
         switch (pValue) {
             case 1:
-                delivery.asignOrder(orderController); // le asigno una orden al delivery
+                delivery.asignOrder(orderController,delivery); // le asigno un delivery a la orden
                 break;
             case 2:
-               //Aca habria que hacer que el pedido se borre de orderControler y tmb del array de ordenes del delivery
+               delivery.deliverOrder(); //Elimina del delivery y del orderController la orden, la entrega al cliente
+                break;
+            case 3:
+                delivery.showOrdersName(); //Muestra las ordenes dentro del delivery, corespondientes al mismo, trabajos tomados
                 break;
             default:
                 break;
-
         }
     }
 
     static void showMenuClient(Client client) {
         clearScreen();
-        System.out.println("\nCliente Menu : ");
-        System.out.println("Ingrese una nueva opcion:");
-        System.out.println("1 - Realizar nuevo pedido");
-        System.out.println("2 - Listar pedidos realizados");
-        Scanner scanner = new Scanner(System.in);
-        int select = scanner.nextInt();
-        clientOptionSelection(select,client);
+        boolean back=false;
+        while (back!=true){
+            System.out.println("\nCliente Menu : ");
+            System.out.println("Ingrese una nueva opcion:");
+            System.out.println("1 - Realizar nuevo pedido");
+            System.out.println("2 - Listar pedidos realizados");
+            System.out.println("9 - Login page");
+            Scanner scanner = new Scanner(System.in);
+            int select = scanner.nextInt();
+            if (select==9){ back=true;}
+            clientOptionSelection(select,client);
+
+        }
+
 
     }
 
@@ -210,8 +234,6 @@ public class Main {
 
         }
     }
-
-
 
     static void showMenuMarket() {
         clearScreen();
