@@ -36,5 +36,8 @@ public class Vector2 {
         return (float) Math.sqrt((Math.pow(pValue.x - this.x, 2) + Math.pow(pValue.y - this.y, 2)));
     }
 
+    public String toString(){
+        return "X="+this.getX()+"  Y="+this.getY();
+    }
 
 }

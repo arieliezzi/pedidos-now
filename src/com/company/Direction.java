@@ -18,6 +18,11 @@ public class Direction {
         this.setDept(dept);
     }
 
+    public String toString(){
+        return "\nCalle : "+this.getStreet()+"\nNumero : "+this.getNumber()+"\nPiso : "+this.getFloor()+"\nDpto : "+this.getDept()
+                +"\nCoords : "+this.getCoords().toString();
+    }
+
     public Vector2 getCoords() {
         return coords;
     }

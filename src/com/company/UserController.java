@@ -6,10 +6,10 @@ import java.util.Scanner;
 public class UserController {
 
 
-    private ArrayList<User> usersList;
+    private ArrayList usersList;
 
     public UserController() {
-        this.usersList = new ArrayList<User>();
+        this.usersList = new ArrayList();
     }
 
 
@@ -118,7 +118,7 @@ public class UserController {
         String nombre;
         String apellido;
 
-
+        clearScreen();
         System.out.println("Creando nuevo cliente");
         System.out.println("Nombre de usuario:");
         user = scan.nextLine();
@@ -162,18 +162,16 @@ public class UserController {
     }
 
     public User loguin(String pUserName, String pPass) {
-        //ACA HAY QUE USAR TRY CATCH PARA LOS TIPOS DE ERRORES (SI ENCUENTRA USER
-        //SI NO COINCIDE EL PASS
-
+        clearScreen();
         User user = null;
 
         boolean exist = false;
 
         for (int i = 0; i < usersList.size(); i++) {
-            if (usersList.get(i).getUserName().equals(pUserName)) {
-                if (usersList.get(i).getPass().equals(pPass)) {
-                    exist = true;
-                    user = usersList.get(i);
+            User newUser = (User) usersList.get(i);
+            if (newUser.getUserName().equals(pUserName)) {
+                if (newUser.getPass().equals(pPass)) {
+                    user = newUser;
                 }
             }
         }
@@ -183,5 +181,10 @@ public class UserController {
 
     public ArrayList<User> getUsersList() {
         return usersList;
+    }
+
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }

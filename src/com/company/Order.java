@@ -13,6 +13,7 @@ public class Order {
     private Dealer dealer;
     private Client client;
     private Date date;
+    private boolean state; //para identificar si esta pendiente o no
 
 
 
@@ -24,6 +25,7 @@ public class Order {
         this.setDealer(dealer);
         this.setClient(client);
         this.setDate(date);
+        this.setState(false);
     }
 
     public Order(float desc, Market market, Dealer dealer, Client client, Date date) {
@@ -80,6 +82,10 @@ public class Order {
         return date;
     }
 
+    public boolean getState(){
+        return this.state;
+    }
+
     public void setDate(Date date) {
         this.date = date;
     }
@@ -89,6 +95,24 @@ public class Order {
         return countId;
     }
 
+    public float getTotal(){
+        float total= 0;
+        for (Product p : getProducts()){
+            total = total + p.getPrice();
+        }
+
+        return total;
+    }
+
+    public void showFullOrder(){
+        System.out.println("Market : "+this.getMarket().getName());
+        System.out.println("Order : --->");
+        for (int i=0; i< this.getProducts().size(); i++){
+
+            System.out.println("\n"+this.getProducts().get(i).toString());
+        }
+        System.out.println("\nTotal : $"+this.getTotal());
+    }
 
     public void showOrderProducts(){ //Creo esta funcion para poder listar los productos a la hora de editar
         for (int i=0; i< this.getProducts().size(); i++){
@@ -109,4 +133,7 @@ public class Order {
         }
     }
 
+    public void setState(boolean state) {
+        this.state = state;
+    }
 }

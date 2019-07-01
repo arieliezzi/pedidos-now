@@ -26,29 +26,30 @@ public class OrderController {
     }
 
     public List<Market> getMarketsClose(Client pCliente) {
-        List<Market> marketsList = new ArrayList<Market>();
+        List<Market> marketsList = new ArrayList();
 
         for (User u : userController.getUsersList()) {
             if (u instanceof Market) {
                 if (((Market) u).getDirectionMarket().getCoords().Distance(pCliente.getDirection().getCoords()) < MIN_DISTANCE_BETWEEN_MARKET) {
                     marketsList.add((Market) u);
+
                 }
             }
         }
-
         return marketsList;
     }
 
     public void showMarketsNear(Client pCliente) {
         List<Market> marketsNear = this.getMarketsClose(pCliente);
+        System.out.println("\nListing Markets Near : ");
         if (marketsNear != null) {
-            for (Market m : marketsNear) {
-                int index = marketsNear.indexOf(m);
-                System.out.println("\nMarket N° : " + index);
-                System.out.println(m.toString());
-                System.out.println(m.getProducts().toString());
+            System.out.println("\nNULL PASEDD!");
+            for (int i = 0; i < marketsNear.size(); i++) {
+
+                System.out.println("\nMarket N° : " + i);
+                System.out.println(marketsNear.get(i).toString());
             }
-        }
+        } else System.out.println("\nNo markets near");
     }
 
 
@@ -66,42 +67,61 @@ public class OrderController {
         return selectedMarket;
     }
 
-    public int createOrder(Client pCliente, Market market) {
+    public int createOrder(Client pCliente) {
         List<Market> marketsNear = this.getMarketsClose(pCliente);
         Market selectedMarket = this.marketSelector(pCliente); //Aqui se muestran los mercados y se da a seleccionar uno, retorno el usuario
-        for (Market m : marketsNear) { //Recorro el arreglo de markets para coincidir con el elegido
-            if (m.getUserName() == selectedMarket.getUserName()) {
-                m.showProducts(); //Mostramos los productos
-            }
-        }
+        System.out.println("\nBuscando productos.....\n");
+        selectedMarket.showProducts();
+        int articulo = -1;
+        System.out.println("\n9. Salir");
 
         ArrayList<Product> shopCart = new ArrayList<>(); //Creando el carrito de compras
         Scanner scanner = new Scanner(System.in);
-        int articulo = -1;
+
+
         while (articulo != 9) {
-            System.out.println("\n\nSeleccione articulo : ");
+
+            System.out.println("\n\nSeleccione nuevo articulo : ");
             articulo = scanner.nextInt(); //Almaceno el index del articulo a agregar
-            Product newProduct = selectedMarket.getProducts().get(articulo); //Guardo el producto
-            shopCart.add(newProduct); //Agrego el producto al carrito
+            if (articulo != 9) {
+                Product newProduct = selectedMarket.getProducts().get(articulo); //Guardo el producto
+                if (newProduct != null) {
+                    shopCart.add(newProduct); //Agrego el producto al carrito
+                    System.out.println("Articulo agregado al carrito! ");
+                } else System.out.println("\nArticulo invalido, reingrese valores");
+            } else {
+                System.out.println("\nOrden completada : ");
+
+            }
+
+
         }
+
         Vector2 vector = new Vector2(); //Creo el vector q solicita la orden de compra
+
         Date date = new Date(); //creo la fecha actual
         Dealer position = new Dealer(pCliente.getUserName(), pCliente.getPass(), pCliente.getEmail(), pCliente.getLastName(), pCliente.getName()
                 , pCliente.getDirection(), pCliente.getTel(), vector, true); //Creo el dealer
         Order newOrder = new Order(shopCart, 0, selectedMarket, position, pCliente, date); //Creo la orden con los datos recopilados anteriormente
-        System.out.println("\n\nOrden registrada : \n" + newOrder.toString());
-        System.out.println("\n\nConfirmar pedido : ");
+
+
+        System.out.println("\nOrden registrada reconfirmacion : \n");
+        newOrder.showFullOrder();
+
+        System.out.println("\n\nConfirmar pedido s/n: ");
         Scanner scanner3 = new Scanner(System.in);
         String resp = scanner3.nextLine();
+
         if (resp.equals("s")) {
             this.addOrder(newOrder); //agrego la orden a la cola de ordenes
-            System.out.println("\n\nPedido registrado exitosamente !!");
+            System.out.println("\n\nPedido registrado exitosamente !! El delivery ya esta en camino!\nRegresando al menu principal....");
             return 1;
         } else {
             System.out.println("\n\nPedido cancelado !!");
             return 0;
         }
     }
+
 
     public void addOrder(Order order) {
         if (order != null) {
@@ -110,5 +130,14 @@ public class OrderController {
 
     }
 
+    public void showOrders() {
+        int i=1;
+        System.out.println("\nListado de ordenes : ");
+        for (Order o : this.getOrdersList()) {
+            System.out.println("Orden nro : "+i);
+            o.showFullOrder();
+            i++;
+        }
 
+    }
 }

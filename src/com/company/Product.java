@@ -63,7 +63,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return id + "- " + name + " - " + " " + description + " stock =" + stock + " $" + price;
+        return  "\nProduct name : "+this.getName() + "\nDescription : " + this.getDescription() + " / stock =" + this.getStock() + "  / $" + this.getPrice();
     }
 
 
