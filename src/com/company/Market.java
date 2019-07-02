@@ -53,7 +53,7 @@ public class Market extends User {
 
     public void addNewProduct() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Creando nuevo producto");
+        System.out.println("Creando nuevo producto: ");
         System.out.println("Ingrese el nombre:");
         String name = scan.nextLine();
 
@@ -90,14 +90,19 @@ public class Market extends User {
     }
 
 
-    public void stockHandler(Order order) { //Todo lo que contiene la orden lo elimina del stock
-        for (int i = 0; i < order.getProducts().size(); i++) {
-            Product product = order.getProducts().get(i); //Capturo el producto de la orden
-            if (this.getProducts().contains(product)) { //Si existe en este mercado
-                int stock = this.getProducts().get(i).getStock(); //Capturo el stock
-                this.getProducts().get(i).setStock(stock - 1); //Seteo el stock menos uno
-            }
+    public void stockHandler() { //Muestra productos y permite modificar stock
+        int i=0;
+        for (Product p :this.getProducts()){
+            System.out.println("Articulo "+i+" "+p.toString());
+            i++;
         }
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese articulo a modificar : ");
+        int resp = scanner.nextInt();
+        System.out.println("Ingrese nuevo stock (El stock actual no sera considerado) : ");
+        Scanner scanner2 = new Scanner(System.in);
+        int newStock = scanner2.nextInt();
+        this.getProducts().get(resp).setStock(newStock);
     }
 
 

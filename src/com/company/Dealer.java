@@ -80,7 +80,6 @@ public class Dealer extends Person {
 
         this.getOrders().remove(index); //elimino del array del delivery el pedido entregado
         orderController.getOrdersList().remove(toDelete); //Borro la orden entregada de orderController
-        orderController.getOrdersList().get(index).getMarket().stockHandler(toDelete); //Actualiza el stock / descuenta todo lo de la orden entregada
         System.out.println("\n\nOrden entregada exitosamente! Keep up the good work!");
 
     }

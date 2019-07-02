@@ -160,7 +160,7 @@ public class Main {
             else if (u instanceof Dealer)
                 showMenuDelivery((Dealer) u);
             else if (u instanceof Market)
-                showMenuMarket();
+                showMenuMarket((Market) u);
         }
     }
 
@@ -233,10 +233,41 @@ public class Main {
         }
     }
 
-    static void showMenuMarket() {
+    static void showMenuMarket(Market m) {
         clearScreen();
-        System.out.println("Market menu : ");
-        System.out.println("1 - Cargar nuevo producto");
-        System.out.println("1 - Modificar stock");
+        boolean back = false;
+        while (!back) {
+            System.out.println("Market menu : ");
+            System.out.println("1 - Cargar nuevo producto");
+            System.out.println("2 - Modificar stock");
+            System.out.println("3 - Ver productos");
+            System.out.println("9 - Volver al login");
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Ingrese seleccion : ");
+            int resp = scanner.nextInt();
+            if (resp == 9) {
+                back = true;
+            }
+            marketOptionSelection(resp, m);
+
+        }
+
+    }
+
+    private static void marketOptionSelection(int pValue, Market market) {
+        switch (pValue) {
+            case 1:
+                market.addNewProduct();
+                break;
+            case 2:
+                market.stockHandler();
+                break;
+            case 3:
+                market.showProducts();
+                break;
+            default:
+                break;
+
+        }
     }
 }
