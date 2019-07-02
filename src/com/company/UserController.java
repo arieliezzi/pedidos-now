@@ -143,8 +143,10 @@ public class UserController {
 
         System.out.println("Piso (0 si no posee):");
         int piso = scan.nextInt();
+
+        Scanner scanner2 = new Scanner(System.in);
         System.out.println("Departamento (0 si no posee):");
-        String depto = scan.nextLine();
+        String depto = scanner2.nextLine();
 
         Direction direccion = new Direction(new Vector2(1, altura), calle, altura, piso, depto);
 

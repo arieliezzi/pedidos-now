@@ -8,7 +8,7 @@ public abstract class User {
     private String email;
 
     public User(String userName, String pass, String email) {
-        this.id = getId();
+        this.id = setId();
         this.setUserName(userName);
         this.setPass(pass);
         this.setEmail(email);
@@ -39,9 +39,13 @@ public abstract class User {
     }
 
 
-    private int getId() {
+    private int setId() {
         countId++;
         return countId;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String toString() {

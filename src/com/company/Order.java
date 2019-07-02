@@ -17,7 +17,7 @@ public class Order {
 
 
     public Order(ArrayList<Product> products, float desc, Market market, Client client, Date date) {
-        this.id = getId();
+        this.id = setId();
         this.setProducts(products);
         this.setDesc(desc);
         this.setMarket(market);
@@ -28,7 +28,7 @@ public class Order {
     }
 
     public Order(float desc, Market market, Client client, Date date) {
-        this.id = getId();
+        this.id = setId();
         products = new ArrayList<Product>();
         this.setDesc(desc);
         this.setMarket(market);
@@ -89,9 +89,14 @@ public class Order {
         this.date = date;
     }
 
-    private int getId() {
+    private int setId() {
         countId++;
         return countId;
+    }
+
+    public int getId()
+    {
+        return this.id;
     }
 
     public float getTotal() {
@@ -129,7 +134,7 @@ public class Order {
         try {
             toModify.modifyProduct();
         } catch (Exception e) {
-            e.printStackTrace(); //Aca deberiamos crear otra excepecion
+            e.printStackTrace();
         }
     }
 

@@ -83,7 +83,7 @@ public class Main {
         orderController.addOrder(order1);
         orderController.addOrder(order2);
 
-        orderController.showOrders();
+
     }
 
     private static int ShowOptions() {
