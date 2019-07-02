@@ -24,7 +24,7 @@ public class Market extends User {
 
 
     public String toString() {
-        return  "\nName : " + this.getName() + "\nDirection : " + this.getDirectionMarket().getStreet()+" / "+this.getDirectionMarket().getNumber();
+        return "\nName : " + this.getName() + "\nDirection : " + this.getDirectionMarket().getStreet() + " / " + this.getDirectionMarket().getNumber();
     }
 
     public Direction getDirectionMarket() {
@@ -72,8 +72,8 @@ public class Market extends User {
     }
 
     public void showProducts() {
-        for (int i=0; i<this.getProducts().size(); i++) {
-            System.out.println("Producto nro "+i+" : "+this.getProducts().get(i).toString());
+        for (int i = 0; i < this.getProducts().size(); i++) {
+            System.out.println("Producto nro " + i + " : " + this.getProducts().get(i).toString());
             System.out.println("<------------------------------------------------------------------>");
         }
 
@@ -86,12 +86,19 @@ public class Market extends User {
         } catch (NullPointerException e) {
             throw new Exception("El producto no se encontraba en la lista");
         }
-
         return product;
     }
 
 
-
+    public void stockHandler(Order order) { //Todo lo que contiene la orden lo elimina del stock
+        for (int i = 0; i < order.getProducts().size(); i++) {
+            Product product = order.getProducts().get(i); //Capturo el producto de la orden
+            if (this.getProducts().contains(product)) { //Si existe en este mercado
+                int stock = this.getProducts().get(i).getStock(); //Capturo el stock
+                this.getProducts().get(i).setStock(stock - 1); //Seteo el stock menos uno
+            }
+        }
+    }
 
 
 }

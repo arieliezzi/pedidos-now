@@ -53,9 +53,6 @@ public class OrderController {
     }
 
 
-    //Recordatorio la idea es una funcion que devuelva el market elegido por el usuario para dsps hacer una funcion que seleccione
-    //lo que va a pedir tipo carrito de compra
-
     public Market marketSelector(Client pCliente) {//Selecciona un market y lo retorna
         List<Market> marketsNear = this.getMarketsClose(pCliente); //Traigo el Array de markets
         int selection; //creo variable para guardar el indice del market seleccionado
@@ -68,7 +65,6 @@ public class OrderController {
     }
 
     public int createOrder(Client pCliente) {
-        List<Market> marketsNear = this.getMarketsClose(pCliente);
         Market selectedMarket = this.marketSelector(pCliente); //Aqui se muestran los mercados y se da a seleccionar uno, retorno el usuario
         System.out.println("\nBuscando productos.....\n");
         selectedMarket.showProducts();
@@ -88,53 +84,55 @@ public class OrderController {
                 if (newProduct != null) {
                     shopCart.add(newProduct); //Agrego el producto al carrito
                     System.out.println("Articulo agregado al carrito! ");
+                    selectedMarket.getProducts().get(articulo).setStock(selectedMarket.getProducts().get(articulo).getStock() - 1); //Actualiza el stock
+                    System.out.println("Stock Actualizado...");
                 } else System.out.println("\nArticulo invalido, reingrese valores");
             } else {
                 System.out.println("\nOrden completada : ");
 
             }
-
-
         }
 
         Vector2 vector = new Vector2(); //Creo el vector q solicita la orden de compra
 
         Date date = new Date(); //creo la fecha actual
-        Dealer position = new Dealer(pCliente.getUserName(), pCliente.getPass(), pCliente.getEmail(), pCliente.getLastName(), pCliente.getName()
-                , pCliente.getDirection(), pCliente.getTel(), vector, true); //Creo el dealer
-        Order newOrder = new Order(shopCart, 0, selectedMarket, position, pCliente, date); //Creo la orden con los datos recopilados anteriormente
 
+        Order newOrder = new Order(shopCart, 0, selectedMarket, pCliente, date); //Creo la orden con los datos recopilados anteriormente
+        if (newOrder != null) {
+            System.out.println("\nOrden registrada reconfirmacion : \n");
+            newOrder.showFullOrder();
 
-        System.out.println("\nOrden registrada reconfirmacion : \n");
-        newOrder.showFullOrder();
+            System.out.println("\n\nConfirmar pedido s/n: ");
+            Scanner scanner3 = new Scanner(System.in);
+            String resp = scanner3.nextLine();
 
-        System.out.println("\n\nConfirmar pedido s/n: ");
-        Scanner scanner3 = new Scanner(System.in);
-        String resp = scanner3.nextLine();
+            if (resp.equals("s")) {
+                this.addOrder(newOrder); //agrego la orden a la cola de ordenes
 
-        if (resp.equals("s")) {
-            this.addOrder(newOrder); //agrego la orden a la cola de ordenes
-            System.out.println("\n\nPedido registrado exitosamente !! El delivery ya esta en camino!\nRegresando al menu principal....");
-            return 1;
-        } else {
-            System.out.println("\n\nPedido cancelado !!");
-            return 0;
-        }
+                System.out.println("\n\nPedido registrado exitosamente !! El delivery ya esta en camino!\nRegresando al menu principal....");
+                return 1;
+            } else {
+                System.out.println("\n\nPedido cancelado !!");
+                return 0;
+            }
+        } else System.out.println("Pedido vacio, intente nuevamente!");
+        return 1;
     }
 
 
     public void addOrder(Order order) {
         if (order != null) {
             this.getOrdersList().add(order);
+
         }
 
     }
 
     public void showOrders() {
-        int i=1;
+        int i = 1;
         System.out.println("\nListado de ordenes : ");
         for (Order o : this.getOrdersList()) {
-            System.out.println("Orden nro : "+i);
+            System.out.println("Orden nro : " + i);
             o.showFullOrder();
             i++;
         }

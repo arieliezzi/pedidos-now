@@ -16,7 +16,7 @@ public class Main {
         orderController = new OrderController(userController);
         init();
         int option = 0;
-        while (option!=5){
+        while (option != 5) {
 
             option = ShowOptions();
             optionSelection(option);
@@ -43,45 +43,43 @@ public class Main {
 
 
         ArrayList<Product> productosBawm = new ArrayList();
-        Product product1 = new Product("Hamburguesa Americana","Hamburguesa con panceta y cheddar",5,250);
-        Product product2 = new Product("Pinta","Cerveza rubia",1225,110);
-        Product product3 = new Product("Papas Bravas","Papas picantes",9999,190);
+        Product product1 = new Product("Hamburguesa Americana", "Hamburguesa con panceta y cheddar", 5, 250);
+        Product product2 = new Product("Pinta", "Cerveza rubia", 1225, 110);
+        Product product3 = new Product("Papas Bravas", "Papas picantes", 9999, 190);
         productosBawm.add(product1);
         productosBawm.add(product2);
         productosBawm.add(product3);
         ArrayList<Product> productosMac = new ArrayList();
-        Product product4 = new Product("Big Mac","Hamburguesa clasica",5,250);
-        Product product5 = new Product("Nuggets","Nuggets de pollo",121,110);
-        Product product6 = new Product("Ensalada","Caesar",9999,190);
+        Product product4 = new Product("Big Mac", "Hamburguesa clasica", 5, 250);
+        Product product5 = new Product("Nuggets", "Nuggets de pollo", 121, 110);
+        Product product6 = new Product("Ensalada", "Caesar", 9999, 190);
         productosMac.add(product4);
         productosMac.add(product5);
         productosMac.add(product6);
         ArrayList<Product> productosCheverry = new ArrayList();
-        Product product7 = new Product("Pinta","Cerveza clasica",125,250);
-        Product product8 = new Product("Bondiola","Bondiola a la cerveza negra",121,110);
-        Product product9 = new Product("Ensalada","Campestre",9999,190);
+        Product product7 = new Product("Pinta", "Cerveza clasica", 125, 250);
+        Product product8 = new Product("Bondiola", "Bondiola a la cerveza negra", 121, 110);
+        Product product9 = new Product("Ensalada", "Campestre", 9999, 190);
         productosCheverry.add(product7);
         productosCheverry.add(product8);
         productosCheverry.add(product9);
-        Market market1 = new Market("market1", "market1", "macdonalds@yahoo.com", dir4, "McDonalds",productosMac);
+        Market market1 = new Market("market1", "market1", "macdonalds@yahoo.com", dir4, "McDonalds", productosMac);
         userController.addNewUser((market1));
-        Market market2 = new Market("market2", "market2", "baum@yahoo.com", dir5, "Baum",productosBawm);
+        Market market2 = new Market("market2", "market2", "baum@yahoo.com", dir5, "Baum", productosBawm);
         userController.addNewUser((market2));
-        Market market3 = new Market("market3", "market3", "Cheverry@yahoo.com", dir6, "Cheverry",productosCheverry);
+        Market market3 = new Market("market3", "market3", "Cheverry@yahoo.com", dir6, "Cheverry", productosCheverry);
         userController.addNewUser((market3));
 
 
-
-
-        Dealer delivery1 = new Dealer(orderController,"Martincho1992", "asd123", "de1@hotmail.com", "Benitez", "Martin", dir1
-                , 123234,new ArrayList<Order>(),new Vector2(),false);
+        Dealer delivery1 = new Dealer(orderController, "Martincho1992", "asd123", "de1@hotmail.com", "Benitez", "Martin", dir1
+                , 123234, new ArrayList<Order>(), new Vector2(), false);
         userController.addNewUser(delivery1);
-        Dealer delivery2 = new Dealer(orderController,"JuanCa223", "asd123", "de1@hotmail.com", "Vermot", "JuanCarlos", dir2
-                , 123234,new ArrayList<Order>(),new Vector2(),false);
+        Dealer delivery2 = new Dealer(orderController, "JuanCa223", "asd123", "de1@hotmail.com", "Vermot", "JuanCarlos", dir2
+                , 123234, new ArrayList<Order>(), new Vector2(), false);
         userController.addNewUser(delivery2);
 
-        Order order1 = new Order(productosBawm,0,market2,delivery1,client1,new Date());
-        Order order2 = new Order(productosMac,0,market1,delivery2,client2,new Date());
+        Order order1 = new Order(productosBawm, 0, market2, client1, new Date());
+        Order order2 = new Order(productosMac, 0, market1, client2, new Date());
         orderController.addOrder(order1);
         orderController.addOrder(order2);
 
@@ -100,7 +98,7 @@ public class Main {
         System.out.println("5 - Salir ");
         System.out.println("\nIngrese seleccion : ");
         int result = scan.nextInt();
-       return result;
+        return result;
     }
 
 
@@ -130,7 +128,7 @@ public class Main {
         return 0;
     }
 
-    public static void clearScreen() {
+    public static void clearScreen() { //Not working
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
@@ -167,8 +165,8 @@ public class Main {
     }
 
     static void showMenuDelivery(Dealer delivery) {
-        boolean back= false;
-        while (back==false){
+        boolean back = false;
+        while (back == false) {
             System.out.println("\nDelivery Menu : ");
             delivery.setAvailable(true); //Habilito el delivery
             System.out.println("Ingrese una nueva opcion:");
@@ -179,8 +177,10 @@ public class Main {
             System.out.println("\nIngrese seleccion : ");
             Scanner scanner = new Scanner(System.in);
             int select = scanner.nextInt();
-            if (select==9){back=true;}
-            deliveryOptionSelection(select,delivery);
+            if (select == 9) {
+                back = true;
+            }
+            deliveryOptionSelection(select, delivery);
         }
 
     }
@@ -188,10 +188,10 @@ public class Main {
     private static void deliveryOptionSelection(int pValue, Dealer delivery) {
         switch (pValue) {
             case 1:
-                delivery.asignOrder(orderController,delivery); // le asigno un delivery a la orden
+                delivery.asignOrder(orderController, delivery); // le asigno un delivery a la orden
                 break;
             case 2:
-               delivery.deliverOrder(); //Elimina del delivery y del orderController la orden, la entrega al cliente
+                delivery.deliverOrder(); //Elimina del delivery y del orderController la orden, la entrega al cliente
                 break;
             case 3:
                 delivery.showOrdersName(); //Muestra las ordenes dentro del delivery, corespondientes al mismo, trabajos tomados
@@ -203,8 +203,8 @@ public class Main {
 
     static void showMenuClient(Client client) {
         clearScreen();
-        boolean back=false;
-        while (back!=true){
+        boolean back = false;
+        while (back != true) {
             System.out.println("\nCliente Menu : ");
             System.out.println("Ingrese una nueva opcion:");
             System.out.println("1 - Realizar nuevo pedido");
@@ -212,19 +212,17 @@ public class Main {
             System.out.println("9 - Login page");
             Scanner scanner = new Scanner(System.in);
             int select = scanner.nextInt();
-            if (select==9){ back=true;}
-            clientOptionSelection(select,client);
-
+            if (select == 9) {
+                back = true;
+            }
+            clientOptionSelection(select, client);
         }
-
-
     }
-
 
     private static void clientOptionSelection(int pValue, Client client) {
         switch (pValue) {
             case 1:
-               orderController.createOrder(client);
+                orderController.createOrder(client);
                 break;
             case 2:
                 orderController.showOrders();
@@ -237,8 +235,7 @@ public class Main {
 
     static void showMenuMarket() {
         clearScreen();
-        System.out.println("");
-        System.out.println("Ingrese una nueva opcion:");
+        System.out.println("Market menu : ");
         System.out.println("1 - Cargar nuevo producto");
         System.out.println("1 - Modificar stock");
     }

@@ -63,7 +63,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return  "\nProduct name : "+this.getName() + "\nDescription : " + this.getDescription() + " / stock =" + this.getStock() + "  / $" + this.getPrice();
+        return "\nProduct name : " + this.getName() + "\nDescription : " + this.getDescription() + " / stock =" + this.getStock() + "  / $" + this.getPrice();
     }
 
 
@@ -80,7 +80,7 @@ public class Product {
         System.out.println("3 - Precio");
         System.out.println("4 - Stock");
         System.out.println("\n\n Ingrese seleccion : ");
-       int res = scan.nextInt();
+        int res = scan.nextInt();
 
         switch (res) {
             case 1:
@@ -93,7 +93,7 @@ public class Product {
                 break;
             case 3:
                 System.out.println("Ingrese el nuevo precio");
-               this.setPrice(scan.nextFloat());
+                this.setPrice(scan.nextFloat());
                 break;
             case 4:
                 System.out.println("Ingrese el nuevo stock");

@@ -59,15 +59,15 @@ public class Dealer extends Person {
                 }
             }
             if (index != -1) {
+
                 orderController.getOrdersList().get(index).setState(true); //cambio el estado de la orden a true para saber que alguien la tomo
                 orderController.getOrdersList().get(index).setDealer(dealer); //asigno el dealer a esa orden
                 System.out.println("ORDEN TOMADA , A REPARTIR!");
                 System.out.println("Order data! : ");
                 selectedOrder.showFullOrder();
+
             }
         } else System.out.println("Error! Orden ya tomada");
-
-
     }
 
     public void deliverOrder() {
@@ -80,7 +80,7 @@ public class Dealer extends Person {
 
         this.getOrders().remove(index); //elimino del array del delivery el pedido entregado
         orderController.getOrdersList().remove(toDelete); //Borro la orden entregada de orderController
-
+        orderController.getOrdersList().get(index).getMarket().stockHandler(toDelete); //Actualiza el stock / descuenta todo lo de la orden entregada
         System.out.println("\n\nOrden entregada exitosamente! Keep up the good work!");
 
     }
