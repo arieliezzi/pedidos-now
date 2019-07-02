@@ -10,7 +10,7 @@ public class Main {
     private static UserController userController;
     private static OrderController orderController;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         userController = new UserController();
         orderController = new OrderController(userController);
@@ -92,9 +92,9 @@ public class Main {
         System.out.println("\n\nBienvenide!");
         System.out.println("Seleccione una opcion");
         System.out.println("1 - Login");
-        System.out.println("2 - Crear nuevo cliente");
-        System.out.println("3 - Crear nuevo delivery");
-        System.out.println("4 - Crear nuevo negocio");
+        System.out.println("2 - Registrar cliente");
+        System.out.println("3 - Registrar  delivery");
+        System.out.println("4 - Registrar  negocio");
         System.out.println("5 - Salir ");
         System.out.println("\nIngrese seleccion : ");
         int result = scan.nextInt();
@@ -102,7 +102,7 @@ public class Main {
     }
 
 
-    private static int optionSelection(int pValue) {
+    private static int optionSelection(int pValue) throws Exception {
         switch (pValue) {
             case 1:
                 loginUi();
@@ -134,7 +134,7 @@ public class Main {
     }
 
 
-    static void loginUi() {
+    static void loginUi() throws Exception {
         clearScreen();
         Scanner scan = new Scanner(System.in);
 
@@ -164,7 +164,7 @@ public class Main {
         }
     }
 
-    static void showMenuDelivery(Dealer delivery) {
+    static void showMenuDelivery(Dealer delivery) throws Exception {
         boolean back = false;
         while (back == false) {
             System.out.println("\nDelivery Menu : ");
@@ -173,6 +173,8 @@ public class Main {
             System.out.println("1 - Solicitar cliente");
             System.out.println("2 - Entregar pedido");
             System.out.println("3 - Ver pedidos pendientes");
+            System.out.println("4 - Ver mis datos");
+            System.out.println("5 - Modificar datos");
             System.out.println("9 - Back to login page");
             System.out.println("\nIngrese seleccion : ");
             Scanner scanner = new Scanner(System.in);
@@ -185,7 +187,7 @@ public class Main {
 
     }
 
-    private static void deliveryOptionSelection(int pValue, Dealer delivery) {
+    private static void deliveryOptionSelection(int pValue, Dealer delivery) throws Exception {
         switch (pValue) {
             case 1:
                 delivery.asignOrder(orderController, delivery); // le asigno un delivery a la orden
@@ -196,12 +198,19 @@ public class Main {
             case 3:
                 delivery.showOrdersName(); //Muestra las ordenes dentro del delivery, corespondientes al mismo, trabajos tomados
                 break;
+            case 4:
+                System.out.println("Mis datos : ");
+                System.out.println(delivery.toString());
+                break;
+            case 5:
+                 delivery.editClient();
+                break;
             default:
                 break;
         }
     }
 
-    static void showMenuClient(Client client) {
+    static void showMenuClient(Client client) throws Exception {
         clearScreen();
         boolean back = false;
         while (back != true) {
@@ -209,6 +218,8 @@ public class Main {
             System.out.println("Ingrese una nueva opcion:");
             System.out.println("1 - Realizar nuevo pedido");
             System.out.println("2 - Listar pedidos realizados");
+            System.out.println("3 - Modificar mis datos");
+            System.out.println("4 - Ver mis datos");
             System.out.println("9 - Login page");
             Scanner scanner = new Scanner(System.in);
             int select = scanner.nextInt();
@@ -219,13 +230,20 @@ public class Main {
         }
     }
 
-    private static void clientOptionSelection(int pValue, Client client) {
+    private static void clientOptionSelection(int pValue, Client client) throws Exception {
         switch (pValue) {
             case 1:
                 orderController.createOrder(client);
                 break;
             case 2:
                 orderController.showOrders();
+                break;
+            case 3:
+                client.editClient();
+                break;
+            case 4:
+                System.out.println("Mis datos : ");
+                System.out.println(client.toString());
                 break;
             default:
                 break;
@@ -241,6 +259,8 @@ public class Main {
             System.out.println("1 - Cargar nuevo producto");
             System.out.println("2 - Modificar stock");
             System.out.println("3 - Ver productos");
+            System.out.println("4 - Ver mis datos");
+            System.out.println("5 - Modificar mis datos");
             System.out.println("9 - Volver al login");
             Scanner scanner = new Scanner(System.in);
             System.out.println("Ingrese seleccion : ");
@@ -264,6 +284,12 @@ public class Main {
                 break;
             case 3:
                 market.showProducts();
+                break;
+            case 4:
+                System.out.println(market.toString());
+                break;
+            case 5:
+                market.editMarket();
                 break;
             default:
                 break;

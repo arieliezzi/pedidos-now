@@ -24,7 +24,7 @@ public class Market extends User {
 
 
     public String toString() {
-        return "\nName : " + this.getName() + "\nDirection : " + this.getDirectionMarket().getStreet() + " / " + this.getDirectionMarket().getNumber();
+        return "\nName : " + this.getName() +"\nE-mail : "+this.getEmail() + "\nDirection : " + this.getDirectionMarket().getStreet() + " / " + this.getDirectionMarket().getNumber();
     }
 
     public Direction getDirectionMarket() {
@@ -105,5 +105,30 @@ public class Market extends User {
         this.getProducts().get(resp).setStock(newStock);
     }
 
+    public void editMarket(){
+        System.out.println("Que campo desea modificar : ");
+        System.out.println("1 - Nombre");
+        System.out.println("2 - E-mail");
+        System.out.println("3 - Direccion");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese seleccion : ");
+        int resp = scanner.nextInt();
+        Scanner scanner2 = new Scanner(System.in);
+        switch(resp){
+            case 1:
+                System.out.println("Ingrese nuevo valor para nombre : ");
+                this.setName(scanner2.nextLine());
+                break;
+            case 2:
+                System.out.println("Ingrese nuevo valor para E-mail: ");
+                this.setEmail(scanner2.nextLine());
+                break;
+            case 3:
+                System.out.println("Edicion de direccion : ");
+                this.getDirectionMarket().editDirection();
+                break;
+        }
+        System.out.println("Operacion terminada con exito!");
+    }
 
 }

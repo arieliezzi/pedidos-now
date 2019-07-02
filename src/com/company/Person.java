@@ -11,7 +11,9 @@ public abstract class Person extends User {
     private int tel; //cambie el nombre porq tiraba warning
     private ArrayList<Order> orders;
 
-
+public String toString(){
+    return "Name : "+this.getName()+"\nLast Name : "+this.getLastName()+"\nTel : "+this.getTel()+"\nDireccion : "+this.getDirection().toString();
+}
     public Person(String userName, String pass, String email, String lastName, String name, Direction direction, int tel, ArrayList<Order> orders) {
         super(userName, pass, email);
         this.setLastName(lastName);
@@ -91,5 +93,58 @@ public abstract class Person extends User {
         System.out.println("Ingrese seleccion : ");
         int resp = scanner.nextInt();
         return this.getOrders().get(resp);
+    }
+
+    public void editClient() throws Exception {
+        Scanner scan = new Scanner(System.in);
+
+
+        System.out.println("Edicion del cliente : ");
+
+
+        System.out.println("Que campo va a modificar?");
+        System.out.println("1 - Nombre");
+        System.out.println("2 - Apellido");
+        System.out.println("3 - Telefono");
+        System.out.println("4 - Direccion");
+        System.out.println("5 - Pedido");
+
+        System.out.println("\n\n Ingrese seleccion : ");
+        int res = scan.nextInt();
+        Scanner scanner2 = new Scanner(System.in);
+        switch (res) {
+            case 1:
+                System.out.println("Ingrese el nuevo nombre: ");
+                this.setName(scanner2.nextLine());
+                System.out.println("Datos modificados exitosamente");
+                break;
+            case 2:
+                System.out.println("Ingrese el nuevo apellido: ");
+                this.setLastName(scanner2.nextLine());
+                System.out.println("Datos modificados exitosamente");
+                break;
+            case 3:
+                System.out.println("Ingrese el nuevo telefono : ");
+                this.setTel(scanner2.nextInt());
+                System.out.println("Datos modificados exitosamente");
+                break;
+            case 4:
+                System.out.println("Edicion de direccion : ");
+               this.getDirection().editDirection();
+                System.out.println("Datos modificados exitosamente");
+                break;
+            case 5:
+                System.out.println("Edicion de pedidos: ");
+
+                Order selectedOrder = this.getSpecificOrder(); //Esto me permite capturar la orden
+                int index = this.getOrders().indexOf(selectedOrder); //Capturo el index de esa orden
+                this.getOrders().get(index).editOrder(); // edito la orden
+                break;
+            default:
+                System.out.println("Opcion incorrecta");
+                break;
+        }
+
+
     }
 }
