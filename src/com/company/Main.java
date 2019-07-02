@@ -96,7 +96,7 @@ public class Main {
         System.out.println("3 - Registrar  delivery");
         System.out.println("4 - Registrar  negocio");
         System.out.println("5 - Salir ");
-        System.out.println("\nIngrese seleccion : ");
+        System.out.print("\nIngrese seleccion : ");
         int result = scan.nextInt();
         return result;
     }
@@ -129,8 +129,9 @@ public class Main {
     }
 
     public static void clearScreen() { //Not working
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        /*System.out.print("\033[H\033[2J");
+        System.out.flush();*/
+
     }
 
 
@@ -176,7 +177,7 @@ public class Main {
             System.out.println("4 - Ver mis datos");
             System.out.println("5 - Modificar datos");
             System.out.println("9 - Back to login page");
-            System.out.println("\nIngrese seleccion : ");
+            System.out.print("\nIngrese seleccion : ");
             Scanner scanner = new Scanner(System.in);
             int select = scanner.nextInt();
             if (select == 9) {
@@ -203,7 +204,7 @@ public class Main {
                 System.out.println(delivery.toString());
                 break;
             case 5:
-                 delivery.editClient();
+                delivery.editClient();
                 break;
             default:
                 break;
@@ -222,6 +223,7 @@ public class Main {
             System.out.println("4 - Ver mis datos");
             System.out.println("9 - Login page");
             Scanner scanner = new Scanner(System.in);
+            System.out.print("Ingrese seleccion : ");
             int select = scanner.nextInt();
             if (select == 9) {
                 back = true;
@@ -263,7 +265,7 @@ public class Main {
             System.out.println("5 - Modificar mis datos");
             System.out.println("9 - Volver al login");
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Ingrese seleccion : ");
+            System.out.print("Ingrese seleccion : ");
             int resp = scanner.nextInt();
             if (resp == 9) {
                 back = true;

@@ -69,7 +69,7 @@ public class OrderController {
         System.out.println("\nBuscando productos.....\n");
         selectedMarket.showProducts();
         int articulo = -1;
-        System.out.println("\n9. Salir");
+        System.out.println("\n9. Terminar pedido  ----------------->");
 
         ArrayList<Product> shopCart = new ArrayList<>(); //Creando el carrito de compras
         Scanner scanner = new Scanner(System.in);

@@ -65,7 +65,6 @@ public class Dealer extends Person {
                 System.out.println("ORDEN TOMADA , A REPARTIR!");
                 System.out.println("Order data! : ");
                 selectedOrder.showFullOrder();
-
             }
         } else System.out.println("Error! Orden ya tomada");
     }
