@@ -32,7 +32,6 @@ public class OrderController {
             if (u instanceof Market) {
                 if (((Market) u).getDirectionMarket().getCoords().Distance(pCliente.getDirection().getCoords()) < MIN_DISTANCE_BETWEEN_MARKET) {
                     marketsList.add((Market) u);
-
                 }
             }
         }
